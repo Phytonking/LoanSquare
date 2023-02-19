@@ -30,3 +30,11 @@ class LoanPayment(models.Model):
     paid = models.BooleanField()
 
 
+class Message(models.Model):
+    name = models.TextField()
+    email = models.EmailField()
+    date_sent = models.DateTimeField()
+    message = models.TextField()
+
+    def __str__(self):
+        return f"{self.name} - {self.date_sent}"
