@@ -1,0 +1,130 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% block  title %}{% endblock %}</title>
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="https://www.gstatic.com/charts/loader.js"></script>
+        <script>
+            function drawChart() {
+                // Set Data
+                
+
+                var data = google.visualization.arrayToDataTable([
+                ['Year', 'Percentage of business that started in 2017 but failed later on'],
+                [2018,20.9],[2019,31.4],[2020,39.3],[2021,44.5],[2022,48.4],
+                ]);
+                // Set Options
+                var options = {
+                title: 'Fail rates of Businesses starting in 2017',
+                hAxis: {title: 'Percentage of businesses failed'},
+                vAxis: {title: 'Year'},
+                legend: 'none'
+                };
+                // Draw Chart
+                var chart = new google.visualization.BarChart(document.getElementById('myChart'));
+                chart.draw(data, options);
+            
+            }
+            google.charts.load('current',{packages:['corechart']});
+            google.charts.setOnLoadCallback(drawChart);
+        </script>
+        <style>
+            body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif;}
+            body, html {
+            height: 100%;
+            width: 100%;
+            color: black;
+            line-height: 1.8;
+            }
+
+            /* Create a Parallax Effect */
+            .bgimg-1, .bgimg-2, .bgimg-3 {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            }
+
+            /* First image (Logo. Full height) */
+            .bgimg-1 {
+            background-image: url("{% static 'web/handshake.webp' %}");
+            min-height: 100%;
+            max-height: 400%;
+            }
+
+            /* Second image (Portfolio) */
+            .bgimg-2 {
+            background-image: url("/w3images/parallax2.jpg");
+            min-height: 400px;
+            }
+
+            /* Third image (Contact) */
+            .bgimg-3 {
+            background-image: url("/w3images/parallax3.jpg");
+            min-height: 400px;
+            }
+
+            .w3-wide {letter-spacing: 10px;}
+            .w3-hover-opacity {cursor: pointer;}
+
+            /* Turn off parallax scrolling for tablets and phones */
+            @media only screen and (max-device-width: 1600px) {
+            .bgimg-1, .bgimg-2, .bgimg-3 {
+                background-attachment: scroll;
+                min-height: 400px;
+            }
+            }
+            #navbar {
+                background-color: rgb(99, 184, 125);
+            }
+            #link{
+                width:146px;
+                height: 56px;
+            }
+            #problem{
+                width: auto;
+            }
+            footer {
+                background-color: rgb(99, 184, 125);
+                height:140px;
+            }
+            #contact_form{
+                background-color: lightgray;
+            }
+            #about{
+                font-family:Verdana, Geneva, Tahoma, sans-serif;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="navbar" class="w3-top w3-bar">
+            <a href="#home" class="w3-button"><img src="{% static 'web/logo.png' %}" width="114px" height="40px"></a>
+            <a href="#about" id="link" class="w3-button w3-right">ABOUT</a>
+            <a href="#contact_form" id="link" class="w3-button w3-right">CONTACT</a>
+        </div>
+
+        <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium">
+            <a href="#home" class="w3-button"><img src="{% static 'web/logo.png' %}" width="114px" height="40px"></a>
+            <a href="#about" class="w3-bar-item w3-button" onclick="toggleFunction()">ABOUT</a>
+            <a href="#contact" class="w3-bar-item w3-button" onclick="toggleFunction()">CONTACT</a>
+          </div>
+        </div>
+        {% block body %} {% endblock %} 
+        
+        <footer>
+            <div class="w3-row">
+                <div class="w3-third" style="margin: 10px;">
+                    <img src="{% static 'web/logo.png' %}" width="350px" height="120px">
+                </div>
+                <div class="w3-third">
+                    <h4>Contact Information</h4>
+                    <h5>Email: reachcreditshare@gmail.com</h5>
+                </div>
+                        
+            </div>
+        </footer>
+    </body>
+</html>

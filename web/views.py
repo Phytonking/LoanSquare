@@ -16,22 +16,3 @@ def contact(request):
         mod.save()
         return render(request, "web/index.html", {"message": "Thanks for sending us a mesage, we will send you an email soon!"})
 
-def login(request):
-    if request.method == "GET":
-        return render(request, "web/login.html")
-    else:
-        u = request.POST["username"]
-        p = request.POST["password"]
-        user = authenticate(username=u, password=p)
-        if user is not None:
-            login(request, user)
-            return render(request, "web/index.html")
-        else:
-            return render(request, "web/index.html")
-
-def register(request):
-    if request.method == "GET":
-        return render(request, "web/login.html")
-
-def logout_view(request):
-    logout(request)
