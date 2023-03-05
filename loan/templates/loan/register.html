@@ -1,0 +1,39 @@
+{% extends 'loan/layout.html' %}
+{% load static %}
+{% block title %} 
+    Login
+{% endblock %}
+
+{% block body %}
+
+
+<div class="w3-content w3-container" id="form">
+    <h2>Login</h2>
+    <form action="{% url 'loan:register' %}" method="POST">
+        {% csrf_token %}
+        First Name: <input type="text" placeholder="First Name" name="first_name" id="input" required><br>
+        Last Name: <input type="text" placeholder="Last Name" name="last_name" id="input" required><br>
+        Email: <input type="email" placeholder="Email" name="email" id="input" required><br>
+        Phone Number: <input type="tel" placeholder="Telephone Number" name="tel" id="input" required><br>
+        Username: <input type="text" placeholder="Username" name="username" id="input" required><br>
+        Password: <input type="password" placeholder="Password" name="password" id="input" required><br><br>
+        Confirm Password: <input type="password" placeholder="Confirm Password" name="c_password" id="input" required><br>
+        <input type="checkbox" name="verify" id="verify" value="verify"required>
+        <label for="verify"><strong>By clicking this and registering, you agree to CreditShare's Terms of Service and are over the age of 18</strong></label><br>
+        <input class="w3-button w3-light-green" type="submit">
+    </form>
+    <h4 style="color: red;">{{message}}</h4>
+</div>
+
+    <style>
+        #form{
+            width: 600px;
+            height: 500px;
+            background-color: lightgray;
+            margin: 100px;
+        }
+        #input {
+            width: 350px;
+        }
+    </style>
+{% endblock %} 

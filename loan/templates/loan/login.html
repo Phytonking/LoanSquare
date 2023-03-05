@@ -1,13 +1,33 @@
-{% extends "loan/layout.html" %}
-
+{% extends 'loan/layout.html' %}
+{% load static %}
 {% block title %} 
     Login
 {% endblock %}
 
-{% block body %} 
-    <form action="" method="">
-        <input type="text" placeholder="Username" name="username" required><br>
-        <input type="password" placeholder="password" name="password" required><br>
-        <input type="submit">
+{% block body %}
+
+
+<div class="w3-content w3-container w3-center" id="form">
+    <h2>Login</h2>
+    <form action="{% url 'loan:login_view' %}" method="POST">
+        {% csrf_token %}
+        Username: <input type="text" placeholder="Username" name="username" required><br>
+        Password: <input type="password" placeholder="password" name="password" required><br><br>
+        <input class="w3-button w3-light-green" type="submit">
     </form>
+    <h4 style="color: red;">{{message}}</h4>
+    <a href="{% url 'loan:register' %}">Don't have an account, Register Here!</a>
+</div>
+
+    <style>
+        #form{
+            width: 500px;
+            height: 500px;
+            background-color: lightgray;
+            margin: 100px;
+        }
+        input {
+            width: 350px;
+        }
+    </style>
 {% endblock %} 

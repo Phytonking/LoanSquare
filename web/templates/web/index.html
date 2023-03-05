@@ -65,7 +65,7 @@
 
 <div class="w3-content w3-container" id="contact_form">
     <h2>Contact Us!</h2>
-    <form action="{% url 'contact' %}" method="POST">
+    <form action="{% url 'web:contact' %}" method="POST">
         {% csrf_token %}
         Name: <input name="Name" placeholder="Name" type="text" required><br>
         Email: <input name="Email" placeholder="Email" type="email" required><br>
