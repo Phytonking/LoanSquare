@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 # Create your models here.
 class InvestorAccount(models.Model):
     owner = models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name="account_owner")
+    account_id = models.IntegerField(null=True)
     account_cash = models.DecimalField(decimal_places=2,max_digits=7)
 
 class BorrowerAccount(models.Model):

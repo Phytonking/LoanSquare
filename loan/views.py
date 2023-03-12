@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.contrib.auth import authenticate, logout
+from django.contrib.auth import authenticate, logout, login
 from loan.models import *
 from django.http import HttpResponseRedirect
 from django.urls import reverse
@@ -9,7 +9,7 @@ from django.contrib.auth.decorators import login_required
 
 @login_required(login_url="/loan/login")
 def index(request):
-    return render(request, "loan/index.html")
+    return render(request, "loan/index.html", {"InvestorAccount": InvestorAccount.objects.filter(owner=request.user), "BorrowerAccount": BorrowerAccount.objects.filter(owner=request.user), "AccountCount": InvestorAccount.objects.filter(owner=request.user).count()+BorrowerAccount.objects.filter(owner=request.user).count()})
 
 def login_view(request):
     if request.method == "GET":
@@ -39,6 +39,7 @@ def register_view(request):
         if verify and password_match:
             l = User(username=u, password=p, email=email, first_name=first_name, last_name=last_name)
             l.save()
+            BorrowerAccount(owner=User.objects.get(username=u)).save()
             return HttpResponseRedirect(reverse("loan:index"))
         else:
             return render(request, "loan/register.html", {"message": "Register did not go through, check registration details."})

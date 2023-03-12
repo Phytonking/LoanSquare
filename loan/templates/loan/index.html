@@ -1,0 +1,77 @@
+{% extends 'web/layout.html' %}
+{% load static %}
+{% block title %} 
+    CreditShare
+{% endblock %}
+
+{% block body %}
+<div class="w3-content w3-container" id="problem">
+    <h3 class="w3-center">We Get it, Starting a business is <strong>HARD</strong></h3>
+    <style>
+        #InvAccounts{
+            height: 250%;
+            margin: 20px;
+        }
+        #BorAccounts{
+            height: 250%;
+            margin: 20px;
+        }
+        #accounts{
+            margin: 20px;
+            background-color: aliceblue;
+        }
+    </style>
+    
+        
+    <div class="w3-container" id="accounts">
+        {% if InvestorAccount.count > 0 %} 
+            <h2>Investor Accounts</h2>
+            {% for x in InvestorAccount %} 
+                <div class="w3-container w3-border" id="InvAccounts">
+                    <h3>{{x.account_id}} <span class="w3-right">Cash: {{x.account_cash}}</span></h3>
+                </div>
+            {% endfor %}
+        {% else %}
+            <h2>No Investor Accounts under this User. </h2>
+        {% endif %} 
+
+        <div class="w3-container">
+            <a href="">
+                <div class="w3-border-round w3-grey">
+                    <h2>Create Investing Account <span class="w3-right" style="margin-right: 10px;">+</span></h2>
+                </div>
+            </a>
+        </div>
+
+        
+        <h2>Borrower Account</h2>
+            <div class="w3-container" id="BorAccounts">
+                <button class="w3-button w3-black">Apply for a new Loan</button><br><br>
+                <button class="w3-button w3-black">Check current Loans</button>
+            </div>
+            
+        
+    </div>
+
+    
+</div>
+
+<!--
+<div class="w3-content w3-container" id="contact_form">
+    <h2>Contact Us!</h2>
+    <form action="{% url 'web:contact' %}" method="POST">
+        {% csrf_token %}
+        Name: <input name="Name" placeholder="Name" type="text" required><br>
+        Email: <input name="Email" placeholder="Email" type="email" required><br>
+        Message: <textarea name="Message" rows="5" cols="50" placeholder="Enter Message"></textarea><br>
+        <input type="submit" class="w3-button w3-black">
+    </form>
+    {{message}}
+    {% if message != None %}
+        <script>
+            alert("{{message}}");
+        </script> 
+    {% endif %}
+</div>
+-->
+{% endblock %}

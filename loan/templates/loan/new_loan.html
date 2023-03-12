@@ -1,14 +1,14 @@
 {% extends 'loan/layout.html' %}
 {% load static %}
 {% block title %} 
-    Login
+    New Loan
 {% endblock %}
 
 {% block body %}
 
 
 <div class="w3-content w3-container" id="form">
-    <h2>Register</h2>
+    <h2>Apply for a new loan</h2>
     <form action="{% url 'loan:register' %}" method="POST">
         {% csrf_token %}
         First Name: <input type="text" placeholder="First Name" name="first_name" id="input" required><br>
