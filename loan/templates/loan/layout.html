@@ -101,15 +101,29 @@
     </head>
     <body>
         <div id="navbar" class="w3-top w3-bar">
+            {% if user.is_authenticated %} 
+            <a href="{% url 'loan:index' %}" class="w3-button"><img src="{% static 'web/logo.png' %}" width="114px" height="40px"></a>
+            {% else %} 
             <a href="{% url 'web:index' %}" class="w3-button"><img src="{% static 'web/logo.png' %}" width="114px" height="40px"></a>
+            {% endif %}
             <a href="#about" id="link" class="w3-button w3-right">ABOUT</a>
             <a href="#contact_form" id="link" class="w3-button w3-right">CONTACT</a>
+            {% if user.is_authenticated %} 
+            <a href="{% url 'loan:logout' %}" id="link" class="w3-button w3-right">LOGOUT</a>
+            {% else %} 
+            <a href="{% url 'loan:login_view' %}" id="link" class="w3-button w3-right">LOGIN/REGISTER</a>
+            {% endif %}
         </div>
 
         <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium">
             <a href="{% url 'web:index' %}" class="w3-button"><img src="{% static 'web/logo.png' %}" width="114px" height="40px"></a>
             <a href="#about" class="w3-bar-item w3-button" onclick="toggleFunction()">ABOUT</a>
             <a href="#contact" class="w3-bar-item w3-button" onclick="toggleFunction()">CONTACT</a>
+            {% if user.is_authenticated %} 
+            <a href="{% url 'loan:logout' %}" id="link" class="w3-button w3-right">LOGOUT</a>
+            {% else %} 
+            <a href="{% url 'loan:login_view' %}" id="link" class="w3-button w3-right">LOGIN/REGISTER</a>
+            {% endif %}
           </div>
         </div>
         {% block body %} 

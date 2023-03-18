@@ -23,41 +23,23 @@
     
         
     <div class="w3-container" id="accounts">
-        {% if InvestorAccount.count > 0 %} 
             <h2>Investor Accounts</h2>
-            {% for x in InvestorAccount %} 
-                <a href="{% url 'loan:account' x.account_id %}">
-                <div class="w3-container w3-border" id="InvAccounts">
-                    <h3>{{x.account_id}} <span class="w3-right">Cash: {{x.account_cash}}</span></h3>
-                </div>
-                </a>
-            {% endfor %}
-        {% else %}
-            <h2>No Investor Accounts under this User. </h2>
-        {% endif %} 
+            <h3>{{account.account_id}}</h3>
+            <h5>Cash Balance: {{account.account_cash}}</h5>
+            <!-- Add stuff for collateral-->
 
         <div class="w3-container">
             <div class="w3-row">
                 <a href="">
                     <div class="w3-border-round w3-light-grey w3-button">
-                        <h4>Create Investing Account</h4>
+                        <h4>Add/Remove Cash</h4>
                     </div>
                 </a><br><br>
-                <a href="">
-                    <div class="w3-border-round w3-light-grey w3-button">
-                        <h4>Check out new investment opportunities</h4>
-                    </div>
-                </a>
             </div>
         </div>
 
         
-        <h2>Borrower Account</h2>
-            <div class="w3-container" id="BorAccounts">
-                <button class="w3-button w3-black">Apply for a new Loan</button><br><br>
-                <button class="w3-button w3-black">Check current Loans</button>
-            </div>
-            
+        
         
     </div>
 

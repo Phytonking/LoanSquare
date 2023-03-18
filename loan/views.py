@@ -46,3 +46,12 @@ def register_view(request):
 
 def logout_view(request):
     logout(request)
+    return HttpResponseRedirect(reverse("web:index"))
+
+
+def account_view(request, account_number):
+    try:
+        k = InvestorAccount.objects.get(account_id=int(account_number), owner=request.user)
+        return render(request, "loan/account.html", {"account": k})
+    except InvestorAccount.DoesNotExist:
+        return render(request, "loan/account.html", {"account": None})
